@@ -14,6 +14,8 @@ Avaliação (Float): Nota média de avaliação do anime (de 0 a 5 estrelas).
 Sinopse (String): Breve descrição sobre o anime.
 Gêneros (List<String>): Lista de gêneros (ex: ação, aventura).
 Endpoints
+
+
 1. Criar um Anime
 
 Endpoint: POST /api/animes
@@ -26,16 +28,22 @@ Corpo da Requisição:
   "generos": ["Ação", "Aventura"]
 }
 Resposta: JSON com os dados do anime criado.
+
+
 2. Listar Todos os Animes
 
 Endpoint: GET /api/animes
 Descrição: Retorna uma lista de todos os animes na biblioteca.
+
+
 3. Obter Anime por ID
 
 Endpoint: GET /api/animes/{id}
 Descrição: Retorna os detalhes de um anime específico.
 Parâmetros:
 id (Integer): ID do anime.
+
+
 4. Atualizar um Anime
 
 Endpoint: PUT /api/animes/{id}
@@ -43,6 +51,8 @@ Descrição: Atualiza informações de um anime específico.
 Parâmetros:
 id (Integer): ID do anime.
 Corpo da Requisição: JSON com os campos a serem atualizados (ex: título, sinopse, autor).
+
+
 5. Remover um Anime
 
 Endpoint: DELETE /api/animes/{id}
@@ -50,6 +60,8 @@ Descrição: Remove um anime da biblioteca.
 Parâmetros:
 id (Integer): ID do anime.
 Funcionalidades Específicas
+
+
 6. Avaliar um Anime
 
 Endpoint: POST /api/animes/{id}/avaliacao
@@ -60,6 +72,8 @@ Corpo da Requisição:
 {
   "nota": 4.5
 }
+
+
 7. Listar Animes de um Autor
 
 Endpoint: GET /api/autores/{autorId}/animes
