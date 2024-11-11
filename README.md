@@ -27,7 +27,7 @@ Corpo da Requisição:
   "sinopse": "Naruto Uzumaki é um jovem ninja...",
   "generos": ["Ação", "Aventura"]
 }
-Resposta: JSON com os dados do anime criado.
+Resposta: JSON com os dados do anime cr
 
 
 2. Listar Todos os Animes
