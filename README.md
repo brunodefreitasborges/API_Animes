@@ -22,12 +22,20 @@ Endpoint: POST /api/animes
 Descrição: Adiciona um novo anime à biblioteca.
 Corpo da Requisição:
 {
-  "titulo": "Naruto",
-  "autor": "Masashi Kishimoto",
-  "sinopse": "Naruto Uzumaki é um jovem ninja...",
-  "generos": ["Ação", "Aventura"]
+"titulo": "One Piece",
+"autor": "Eiichiro Oda",
+"sinopse": "One Piece segue as aventuras de Monkey D. Luffy e sua tripulação em busca do tesouro lendário 'One Piece' para se tornarem os Reis dos Piratas. A história se passa em um vasto mundo repleto de ilhas, piratas, Marinha e uma grande diversidade de personagens e poderes.",
+"generos": [
+"ACAO",
+"AVENTURA",
+"COMEDIA",
+"DRAMA",
+"FANTASIA"
+]
 }
-Resposta: JSON com os dados do anime cr
+
+
+Resposta: JSON com os dados do anime registrado.
 
 
 2. Listar Todos os Animes

@@ -1,6 +1,6 @@
 package com.api.anime.anime_library_api.domain.entity;
 
-import com.api.anime.anime_library_api.domain.anime.DadosRegistroAnime;
+import com.api.anime.anime_library_api.domain.dto.DadosRegistroAnime;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
