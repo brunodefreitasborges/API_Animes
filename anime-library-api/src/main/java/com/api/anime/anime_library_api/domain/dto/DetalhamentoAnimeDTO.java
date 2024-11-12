@@ -6,9 +6,9 @@ import com.api.anime.anime_library_api.domain.entity.Genero;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public record DadosListagemAnime(Long id, String titulo, String autor, Double nota, String sinopse, List<String> generos) {
+public record DetalhamentoAnimeDTO(Long id, String titulo, String autor, Double nota, String sinopse, List<String> generos, Boolean ativo) {
 
-    public DadosListagemAnime(Anime anime) {
+    public DetalhamentoAnimeDTO(Anime anime) {
         this(
                 anime.getId(),
                 anime.getTitulo(),
@@ -17,7 +17,9 @@ public record DadosListagemAnime(Long id, String titulo, String autor, Double no
                 anime.getSinopse(),
                 anime.getGeneros().stream()
                         .map(Genero::getNome)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()),
+                anime.getAtivo());
+
     }
 }
 

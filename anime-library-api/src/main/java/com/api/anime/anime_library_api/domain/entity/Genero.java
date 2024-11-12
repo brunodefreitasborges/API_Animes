@@ -20,4 +20,9 @@ public class Genero {
 
     @Column(nullable = false, unique = true)
     private String nome;
+
+    @Override
+    public String toString() {
+        return this.nome;
+    }
 }

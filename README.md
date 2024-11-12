@@ -16,7 +16,7 @@ Gêneros (List<String>): Lista de gêneros (ex: ação, aventura).
 Endpoints
 
 
-1. Criar um Anime
+1. Criar um Anime - DONE
 
 Endpoint: POST /api/animes
 Descrição: Adiciona um novo anime à biblioteca.
@@ -33,18 +33,16 @@ Corpo da Requisição:
 "FANTASIA"
 ]
 }
-
-
 Resposta: JSON com os dados do anime registrado.
 
 
-2. Listar Todos os Animes
+2. Listar Todos os Animes - DONE
 
 Endpoint: GET /api/animes
-Descrição: Retorna uma lista de todos os animes na biblioteca.
+Descrição: Retorna uma lista de todos os animes na biblioteca, com nome e id.
 
 
-3. Obter Anime por ID
+3. Obter Anime por ID - DONE
 
 Endpoint: GET /api/animes/{id}
 Descrição: Retorna os detalhes de um anime específico.
@@ -52,16 +50,25 @@ Parâmetros:
 id (Integer): ID do anime.
 
 
-4. Atualizar um Anime
+4. Atualizar um Anime - TODO
 
 Endpoint: PUT /api/animes/{id}
 Descrição: Atualiza informações de um anime específico.
 Parâmetros:
 id (Integer): ID do anime.
-Corpo da Requisição: JSON com os campos a serem atualizados (ex: título, sinopse, autor).
+Corpo da Requisição:
+{
+"titulo" : "uma peça",
+"generos" : [
+{ "nome": "ACAO" },
+{ "nome": "AVENTURA" },
+{ "nome": "COMEDIA" },
+{ "nome": "DRAMA" },
+{ "nome": "FANTASIA" }
+]
+}
 
-
-5. Remover um Anime
+5. Remover um Anime - TODO
 
 Endpoint: DELETE /api/animes/{id}
 Descrição: Remove um anime da biblioteca.
@@ -70,7 +77,7 @@ id (Integer): ID do anime.
 Funcionalidades Específicas
 
 
-6. Avaliar um Anime
+6. Avaliar um Anime - DONE
 
 Endpoint: POST /api/animes/{id}/avaliacao
 Descrição: Permite que o usuário adicione uma nova avaliação para um anime. A nota é somada ao total, e a média é recalculada.
@@ -78,11 +85,11 @@ Parâmetros:
 id (Integer): ID do anime.
 Corpo da Requisição:
 {
-  "nota": 4.5
+  4.5
 }
 
 
-7. Listar Animes de um Autor
+7. Listar Animes de um Autor - TODO
 
 Endpoint: GET /api/autores/{autorId}/animes
 Descrição: Retorna todos os animes associados a um autor específico.
