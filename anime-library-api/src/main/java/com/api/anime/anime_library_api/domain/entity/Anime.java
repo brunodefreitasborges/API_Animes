@@ -1,7 +1,7 @@
 package com.api.anime.anime_library_api.domain.entity;
 
-import com.api.anime.anime_library_api.domain.dto.AtualizacaoAnimeDTO;
-import com.api.anime.anime_library_api.domain.dto.RegistroAnimeDTO;
+import com.api.anime.anime_library_api.application.dto.AtualizacaoAnimeDTO;
+import com.api.anime.anime_library_api.application.dto.RegistroAnimeDTO;
 import jakarta.persistence.*;
 import lombok.*;
 

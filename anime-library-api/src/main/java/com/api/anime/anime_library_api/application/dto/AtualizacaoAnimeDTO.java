@@ -1,4 +1,4 @@
-package com.api.anime.anime_library_api.domain.dto;
+package com.api.anime.anime_library_api.application.dto;
 
 import com.api.anime.anime_library_api.domain.entity.Genero;
 
