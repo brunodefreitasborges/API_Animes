@@ -1,10 +1,12 @@
-package com.api.anime.anime_library_api.domain.repository;
+package com.api.anime.anime_library_api.infrastructure.repository;
 
 import com.api.anime.anime_library_api.domain.entity.Genero;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface GeneroRepository extends JpaRepository<Genero, Long> {
+public interface GeneroJPARepository extends JpaRepository<Genero, Long> {
     Optional<Genero> findByNome(String nome);
+
+    Boolean existsByNome(String nomeGenero);
 }

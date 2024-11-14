@@ -1,20 +1,20 @@
 package com.api.anime.anime_library_api.application.usecase;
 
 import com.api.anime.anime_library_api.domain.entity.Anime;
-import com.api.anime.anime_library_api.domain.repository.AnimeRepository;
+import com.api.anime.anime_library_api.infrastructure.repository.AnimeJPARepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DesativarAnimeUseCase {
 
-    private final AnimeRepository animeRepository;
+    private final AnimeJPARepository animeJPARepository;
 
-    public DesativarAnimeUseCase(AnimeRepository animeRepository) {
-        this.animeRepository = animeRepository;
+    public DesativarAnimeUseCase(AnimeJPARepository animeJPARepository) {
+        this.animeJPARepository = animeJPARepository;
     }
 
     public Anime desativar(Long id) {
-        Anime anime = animeRepository.getReferenceById(id);
+        Anime anime = animeJPARepository.getReferenceById(id);
         anime.desativar();
         return anime;
     }

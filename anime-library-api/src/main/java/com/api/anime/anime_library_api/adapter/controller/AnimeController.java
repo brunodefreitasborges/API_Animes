@@ -24,17 +24,24 @@ public class AnimeController {
     private final AtualizarAnimeUseCase atualizarAnimeUseCase;
     private final DesativarAnimeUseCase desativarAnimeUseCase;
     private final AtivarAnimeUseCase ativarAnimeUseCase;
+    private final ListarAnimesPorGeneroUseCase listarAnimesPorGeneroUseCase;
+    private final AdicionarGeneroUseCase adicionarGeneroUseCase;
 
     @Autowired
-    public AnimeController(AtivarAnimeUseCase ativarAnimeUseCase, DesativarAnimeUseCase desativarAnimeUseCase, AtualizarAnimeUseCase atualizarAnimeUseCase, DetalharAnimeUseCase detalharAnimeUseCase, ListarAnimesUseCase listarAnimesUseCase, AvaliarAnimeUseCase avaliarAnimeUseCase, RegistrarAnimeUseCase registrarAnimeUseCase) {
-        this.ativarAnimeUseCase = ativarAnimeUseCase;
-        this.desativarAnimeUseCase = desativarAnimeUseCase;
-        this.atualizarAnimeUseCase = atualizarAnimeUseCase;
-        this.detalharAnimeUseCase = detalharAnimeUseCase;
-        this.listarAnimesUseCase = listarAnimesUseCase;
-        this.avaliarAnimeUseCase = avaliarAnimeUseCase;
+    public AnimeController(RegistrarAnimeUseCase registrarAnimeUseCase, AvaliarAnimeUseCase avaliarAnimeUseCase, ListarAnimesUseCase listarAnimesUseCase, DetalharAnimeUseCase detalharAnimeUseCase, AtualizarAnimeUseCase atualizarAnimeUseCase, DesativarAnimeUseCase desativarAnimeUseCase, AtivarAnimeUseCase ativarAnimeUseCase, ListarAnimesPorGeneroUseCase listarAnimesPorGeneroUseCase, AdicionarGeneroUseCase adicionarGeneroUseCase) {
         this.registrarAnimeUseCase = registrarAnimeUseCase;
+        this.avaliarAnimeUseCase = avaliarAnimeUseCase;
+        this.listarAnimesUseCase = listarAnimesUseCase;
+        this.detalharAnimeUseCase = detalharAnimeUseCase;
+        this.atualizarAnimeUseCase = atualizarAnimeUseCase;
+        this.desativarAnimeUseCase = desativarAnimeUseCase;
+        this.ativarAnimeUseCase = ativarAnimeUseCase;
+        this.listarAnimesPorGeneroUseCase = listarAnimesPorGeneroUseCase;
+        this.adicionarGeneroUseCase = adicionarGeneroUseCase;
     }
+
+
+
 
     @PostMapping
     @Transactional
@@ -47,6 +54,12 @@ public class AnimeController {
     public ResponseEntity<Void> avaliar(@PathVariable Long id, @RequestBody AvaliarDTO dados) {
         avaliarAnimeUseCase.avaliar(id, dados);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/genero/{genero}")
+    public ResponseEntity<Page<ListarAnimeDTO>> listarAnimePorGenero(@PathVariable String genero, @PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+        Page<ListarAnimeDTO> page = listarAnimesPorGeneroUseCase.listaGenero(genero, paginacao);
+        return ResponseEntity.ok(page);
     }
 
     @GetMapping
@@ -68,12 +81,6 @@ public class AnimeController {
         return ResponseEntity.ok(new DetalhamentoAnimeDTO(anime));
     }
 
-    @DeleteMapping("/{id}")
-    @Transactional
-    public ResponseEntity<DetalhamentoAnimeDTO> desativar(@PathVariable Long id) {
-        Anime anime = desativarAnimeUseCase.desativar(id);
-        return ResponseEntity.ok(new DetalhamentoAnimeDTO(anime));
-    }
 
     @PutMapping("/{id}/ativar")
     @Transactional
@@ -82,4 +89,17 @@ public class AnimeController {
         return ResponseEntity.ok(new DetalhamentoAnimeDTO(anime));
     }
 
+    @PutMapping("/{id}/{genero}")
+    @Transactional
+    public ResponseEntity<Void> adicionarGenero(@PathVariable Long id, @PathVariable String genero) {
+        adicionarGeneroUseCase.adicionarGenero(id, genero);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DetalhamentoAnimeDTO> desativar(@PathVariable Long id) {
+        Anime anime = desativarAnimeUseCase.desativar(id);
+        return ResponseEntity.ok(new DetalhamentoAnimeDTO(anime));
+    }
 }
