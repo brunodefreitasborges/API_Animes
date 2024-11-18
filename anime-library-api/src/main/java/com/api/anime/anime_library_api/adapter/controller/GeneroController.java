@@ -24,7 +24,7 @@ public class GeneroController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ListarGenerosDTO>> listarGeneros(@PageableDefault(size = 10, sort = {"id"}) Pageable paginacao) {
+    public ResponseEntity<Page<ListarGenerosDTO>> listarGeneros(@PageableDefault(size = 20, sort = {"nome"}) Pageable paginacao) {
         Page<ListarGenerosDTO> page = listarGeneros.listar(paginacao);
         return ResponseEntity.ok(page);
     }

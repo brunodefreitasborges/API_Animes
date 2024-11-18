@@ -1,101 +1,79 @@
-# API_Animes
-API de Biblioteca de Animes
+# Anime Library API
 
-Base URL
-/api/animes
+A API para gerenciar uma biblioteca de animes, permitindo o registro, avaliação, listagem, atualização, desativação e adição de gêneros aos animes. A API também oferece a funcionalidade de buscar animes por gênero.
 
-Estrutura da Entidade Anime
-Cada anime possui:
+## Funcionalidades
 
-ID (Integer): Identificador único do anime.
-Título (String): Nome do anime.
-Autor(a) (String): Nome do autor ou autora do anime.
-Avaliação (Float): Nota média de avaliação do anime (de 0 a 5 estrelas).
-Sinopse (String): Breve descrição sobre o anime.
-Gêneros (List<String>): Lista de gêneros (ex: ação, aventura).
-Endpoints
+### **Anime**
 
+- **Registrar Anime**
+  - **Endpoint**: `POST /animes`
+  - **Descrição**: Registra um novo anime na biblioteca.
+  - **Parâmetros**: `RegistroAnimeDTO` (Título, sinopse, nota inicial 0, etc.)
+  - **Resposta**: Retorna o anime recém-criado.
 
-1. Criar um Anime - DONE
+- **Avaliar Anime**
+  - **Endpoint**: `POST /animes/{id}/avaliar`
+  - **Descrição**: Avalia um anime e altera sua nota com base na avaliação fornecida.
+  - **Parâmetros**: `AvaliarDTO` (nota de 0 a 5 estrelas)
+  - **Resposta**: Retorna uma resposta de sucesso.
 
-Endpoint: POST /api/animes
-Descrição: Adiciona um novo anime à biblioteca.
-Corpo da Requisição:
-{
-"titulo": "One Piece",
-"autor": "Eiichiro Oda",
-"sinopse": "One Piece segue as aventuras de Monkey D. Luffy e sua tripulação em busca do tesouro lendário 'One Piece' para se tornarem os Reis dos Piratas. A história se passa em um vasto mundo repleto de ilhas, piratas, Marinha e uma grande diversidade de personagens e poderes.",
-"generos": [
-"ACAO",
-"AVENTURA",
-"COMEDIA",
-"DRAMA",
-"FANTASIA"
-]
-}
-Resposta: JSON com os dados do anime registrado.
+- **Listar Animes**
+  - **Endpoint**: `GET /animes`
+  - **Descrição**: Lista todos os animes na biblioteca com paginação.
+  - **Parâmetros**: `Pageable` (página e número de itens por página)
+  - **Resposta**: Retorna uma lista paginada de animes.
 
+- **Detalhar Anime**
+  - **Endpoint**: `GET /animes/{id}`
+  - **Descrição**: Retorna os detalhes de um anime específico.
+  - **Parâmetros**: `id` (ID do anime)
+  - **Resposta**: Retorna detalhes como título, sinopse e avaliação média.
 
-2. Listar Todos os Animes - DONE
+- **Atualizar Anime**
+  - **Endpoint**: `PUT /animes/{id}`
+  - **Descrição**: Atualiza as informações de um anime existente.
+  - **Parâmetros**: `AtualizacaoAnimeDTO` (novos dados do anime)
+  - **Resposta**: Retorna o anime atualizado.
 
-Endpoint: GET /api/animes
-Descrição: Retorna uma lista de todos os animes na biblioteca, com nome e id.
+- **Ativar Anime**
+  - **Endpoint**: `PUT /animes/{id}/ativar`
+  - **Descrição**: Ativa um anime previamente desativado.
+  - **Parâmetros**: `id` (ID do anime)
+  - **Resposta**: Retorna o anime ativado.
 
+- **Desativar Anime**
+  - **Endpoint**: `DELETE /animes/{id}`
+  - **Descrição**: Desativa um anime, fazendo com que ele não apareça nas listagens futuras.
+  - **Parâmetros**: `id` (ID do anime)
+  - **Resposta**: Retorna o anime desativado.
 
-3. Obter Anime por ID - DONE
+- **Adicionar Gênero ao Anime**
+  - **Endpoint**: `PUT /animes/{id}/{genero}`
+  - **Descrição**: Associa um gênero a um anime.
+  - **Parâmetros**: `id` (ID do anime), `genero` (nome do gênero)
+  - **Resposta**: Retorna uma resposta de sucesso.
 
-Endpoint: GET /api/animes/{id}
-Descrição: Retorna os detalhes de um anime específico.
-Parâmetros:
-id (Integer): ID do anime.
+### **Gêneros**
 
+- **Listar Gêneros**
+  - **Endpoint**: `GET /generos`
+  - **Descrição**: Lista todos os gêneros disponíveis na biblioteca com paginação.
+  - **Parâmetros**: `Pageable` (página e número de itens por página)
+  - **Resposta**: Retorna uma lista paginada de gêneros.
 
-4. Atualizar um Anime - TODO
+## Tecnologias Utilizadas
 
-Endpoint: PUT /api/animes/{id}
-Descrição: Atualiza informações de um anime específico.
-Parâmetros:
-id (Integer): ID do anime.
-Corpo da Requisição:
-{
-"titulo" : "uma peça",
-"generos" : [
-{ "nome": "ACAO" },
-{ "nome": "AVENTURA" },
-{ "nome": "COMEDIA" },
-{ "nome": "DRAMA" },
-{ "nome": "FANTASIA" }
-]
-}
+- **Spring Boot**: Framework para o desenvolvimento da API.
+- **JPA (Java Persistence API)**: Gerenciamento de dados no banco de dados.
+- **Spring Data**: Acesso fácil ao banco de dados.
+- **Spring Security**: Gerenciamento de segurança e autenticação.
+- **Jakarta Validation**: Validação de dados de entrada.
+- **Pageable**: Paginação de respostas em listagens de animes e gêneros.
 
-5. Remover um Anime - TODO
+## Como Usar
 
-Endpoint: DELETE /api/animes/{id}
-Descrição: Remove um anime da biblioteca.
-Parâmetros:
-id (Integer): ID do anime.
-Funcionalidades Específicas
+1. Clone o repositório:
 
-
-6. Avaliar um Anime - DONE
-
-Endpoint: POST /api/animes/{id}/avaliacao
-Descrição: Permite que o usuário adicione uma nova avaliação para um anime. A nota é somada ao total, e a média é recalculada.
-Parâmetros:
-id (Integer): ID do anime.
-Corpo da Requisição:
-{
-  4.5
-}
-
-
-7. Listar Animes de um Autor - TODO
-
-Endpoint: GET /api/autores/{autorId}/animes
-Descrição: Retorna todos os animes associados a um autor específico.
-Parâmetros:
-autorId (Integer): ID do autor.
-Possíveis Extensões Futuras
-Filtrar Animes por Gênero: Endpoint que permita a filtragem de animes com base no gênero.
-Ordenar Animes por Avaliação: Endpoint para listar animes em ordem de avaliação (do mais alto ao mais baixo).
-Adicionar Comentários: Endpoint para adicionar comentários aos animes, permitindo uma interação mais detalhada.
+```bash
+git clone https://github.com/seuusuario/anime-library-api.git
