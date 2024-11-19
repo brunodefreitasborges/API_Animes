@@ -1,6 +1,5 @@
 package com.api.anime.anime_library_api.domain.animes;
 
-import com.api.anime.anime_library_api.application.dto.*;
 import com.api.anime.anime_library_api.domain.dto.*;
 import com.api.anime.anime_library_api.infrastructure.entity.Anime;
 import com.api.anime.anime_library_api.infrastructure.entity.Genero;
