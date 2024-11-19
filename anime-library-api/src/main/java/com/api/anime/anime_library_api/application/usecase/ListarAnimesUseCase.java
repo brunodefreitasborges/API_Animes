@@ -1,6 +1,6 @@
 package com.api.anime.anime_library_api.application.usecase;
 
-import com.api.anime.anime_library_api.application.dto.ListarAnimeDTO;
+import com.api.anime.anime_library_api.domain.dto.ListarAnimeDTO;
 import com.api.anime.anime_library_api.infrastructure.repository.AnimeJPARepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

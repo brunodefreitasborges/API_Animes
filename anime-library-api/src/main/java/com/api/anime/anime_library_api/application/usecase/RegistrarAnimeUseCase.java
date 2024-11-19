@@ -1,8 +1,8 @@
 package com.api.anime.anime_library_api.application.usecase;
 
-import com.api.anime.anime_library_api.application.dto.RegistroAnimeDTO;
-import com.api.anime.anime_library_api.domain.entity.Anime;
-import com.api.anime.anime_library_api.domain.entity.Genero;
+import com.api.anime.anime_library_api.domain.dto.RegistroAnimeDTO;
+import com.api.anime.anime_library_api.infrastructure.entity.Anime;
+import com.api.anime.anime_library_api.infrastructure.entity.Genero;
 import com.api.anime.anime_library_api.infrastructure.repository.AnimeJPARepository;
 import com.api.anime.anime_library_api.infrastructure.repository.GeneroJPARepository;
 import org.springframework.stereotype.Service;
